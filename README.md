@@ -6,8 +6,10 @@ pip install ./requirements.txt
 Also requires installing rabbitmq, sqlite3
 
 #### To install client: ####
-`cd ./client`
-`npm install`
+```
+cd ./client
+npm install
+```
 
 #### Starting server/client: #####
 Start server via: `python app.py`.  Server runs on port 5000
