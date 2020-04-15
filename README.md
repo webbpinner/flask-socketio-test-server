@@ -1,7 +1,9 @@
 flask-socketio-test-server
 
 #### To install server: ####
-pip install ./requirements.txt
+```
+pip install -r ./requirements.txt
+```
 
 Also requires installing rabbitmq, sqlite3
 
