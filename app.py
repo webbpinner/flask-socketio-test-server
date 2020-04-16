@@ -17,8 +17,8 @@ def create_tables():
     deployments = DeploymentModel.find_all()
     if not deployments:
         print('Populating deployments...')
-        # DeploymentModel(name, start_ts, stop_ts, platform_id, disabled)
-        DefaultDeployment = DeploymentModel('ROV-001', datetime.utcnow() - timedelta(hours=2), datetime.utcnow() + timedelta(hours=17), 2, False)
+        # DeploymentModel(name)
+        DefaultDeployment = DeploymentModel('ROV-001')
         with app.app_context():
             db.session.add(DefaultDeployment)
             db.session.commit()

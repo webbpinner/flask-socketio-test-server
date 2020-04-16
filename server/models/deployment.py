@@ -5,27 +5,15 @@ class DeploymentModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40))
-    start_ts = db.Column(db.DateTime)
-    stop_ts = db.Column(db.DateTime)
-    platform_id = db.Column(db.Integer)
-    disabled = db.Column(db.Boolean)
 
-    def __init__(self, name, start_ts, stop_ts, platform_id, disabled):
+    def __init__(self, name):
         self.name = name
-        self.start_ts = start_ts
-        self.stop_ts = stop_ts
-        self.platform_id = platform_id
-        self.disabled = disabled
 
     def json(self):
 
         return {
             'id': self.id,
             'name': self.name,
-            'start_ts': self.start_ts.isoformat(),
-            'stop_ts': self.stop_ts.isoformat(),
-            'platform_id': self.platform_id,
-            'disabled': self.disabled,
         }
 
     @classmethod

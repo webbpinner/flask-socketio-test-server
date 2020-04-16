@@ -35,6 +35,7 @@ class App extends React.Component {
 
     } catch(error) {
       console.log(error);
+      this.setState({deployments:[{status: 'Unable to connect to server'}]});
       throw(error);
     }
   }
@@ -59,7 +60,7 @@ class App extends React.Component {
       return response.data.deployments;
     }).catch(error => {
       console.log(error);
-      return [{status: error}];
+      return [{status: 'Unable to connect to server'}];
     })
 
     this.setState({deployments});

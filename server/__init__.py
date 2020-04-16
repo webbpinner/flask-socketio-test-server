@@ -10,13 +10,10 @@ from .config import Config
 
 db = SQLAlchemy()
 
-# socketio = SocketIO(cors_allowed_origins='*', message_queue='amqp://', channel='rt_updates', async_mode='eventlet', logger=True)
+# socketio = SocketIO(cors_allowed_origins='*', message_queue='amqp://', logger=True)
 socketio = SocketIO(cors_allowed_origins='*', logger=True)
 
-from .resources import blueprint as api
-
-def create_app(test_config=None, debug=False, *args, **kwargs):
-    """Create an application."""
+def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     if test_config is None:
@@ -30,9 +27,8 @@ def create_app(test_config=None, debug=False, *args, **kwargs):
     socketio.init_app(app)
     CORS(app)
 
-    with app.app_context():
+    # Register Blueprints
+    from .resources import blueprint as api
+    app.register_blueprint(api)
 
-        # Register Blueprints
-        app.register_blueprint(api)
-
-        return app
+    return app
