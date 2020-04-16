@@ -3,6 +3,8 @@ from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
 from datetime import datetime
 import json
 
+from flask_socketio import emit, send
+
 from ..models.deployment import DeploymentModel
 from .. import socketio
 
@@ -38,7 +40,7 @@ class Deployment(Resource):
     @socketio.on('deployment_updated')
     def handle_new_deployment(deployment):
         print('received new deployment ' + json.dumps(deployment.json()))
-        socketio.emit('deployment_updated', deployment.json(), broadcast=True, namespace='/deployments')
+        emit('deployment_updated', deployment.json(), broadcast=True, namespace='/deployments')
 
     @classmethod
     @api.doc('update_deployment')

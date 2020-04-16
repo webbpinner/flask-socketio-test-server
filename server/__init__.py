@@ -10,11 +10,10 @@ from .config import Config
 
 db = SQLAlchemy()
 
-# socketio = SocketIO(cors_allowed_origins='*', message_queue='amqp://', logger=True)
-socketio = SocketIO(cors_allowed_origins='*', logger=True)
+socketio = SocketIO()
 
 def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=False)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -24,7 +23,10 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     db.init_app(app)
-    socketio.init_app(app)
+
+    # socketio.init_app(app, cors_allowed_origins='*', logger=True)
+    socketio.init_app(app, cors_allowed_origins='*', message_queue='amqp://', logger=True)
+
     CORS(app)
 
     # Register Blueprints
