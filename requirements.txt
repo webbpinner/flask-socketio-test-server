@@ -11,7 +11,7 @@ eventlet==0.25.2
 Flask==1.1.1
 Flask-Cors==3.0.8
 Flask-JWT-Extended==3.24.1
-flask-restx==0.2.0
+flask-restx==0.5.1
 Flask-Script==2.0.6
 Flask-SocketIO==4.2.1
 Flask-SQLAlchemy==2.4.1
